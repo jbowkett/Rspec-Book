@@ -5,19 +5,33 @@ module Codebreaker
       @output = output
     end
 
+
     def start(secret)
       @secret = secret
       @output.puts "Welcome to codebreaker!"
       @output.puts "Enter guess:"
     end
 
-    def guess(guess)
-      if @secret.include?guess[0]
-        @output.puts '-'
 
+    def guess(guess)
+      if exact_match?(guess, 0)
+        mark = '+'
+      elsif number_match?(guess, 0)
+        mark = '-'
       else
-        @output.puts ''
+        mark = ''
       end
+        @output.puts mark
+    end
+
+
+    def number_match?(guess, index)
+      @secret.include? guess[index]
+    end
+
+
+    def exact_match?(guess, index)
+      guess[index] == @secret[index]
     end
 
   end
