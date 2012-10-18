@@ -4,7 +4,7 @@ end
 
 When /^I start a new game$/ do
   game = Codebreaker::Game.new(output)
-  game.start
+  game.start('1234')
 end
 
 Then /^I should see "([^"]*)" in codebreaker$/ do |arg|
