@@ -14,12 +14,7 @@ module Codebreaker
 
 
     def guess(guess)
-
-
-      exact_match_count = exact_match_count(guess)
-      number_match_count = number_match_count(guess)
-
-      @output.puts '+' * exact_match_count + '-' * number_match_count
+      @output.puts '+' * exact_match_count(guess) + '-' * number_match_count(guess)
     end
 
     def exact_match_count(guess)
