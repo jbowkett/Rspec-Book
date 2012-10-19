@@ -14,19 +14,25 @@ module Codebreaker
 
 
     def guess(guess)
-      if exact_match?(guess, 0)
-        mark = '+'
-      elsif number_match?(guess, 0)
-        mark = '-'
-      else
-        mark = ''
+      mark = ''
+
+      (0..3).map do |index|
+        if exact_match?(guess, index)
+          mark << '+'
+        end
+
       end
-        @output.puts mark
+      (0..3).map do |index|
+        if number_match?(guess, index)
+          mark << '-'
+        end
+      end
+      @output.puts mark
     end
 
 
     def number_match?(guess, index)
-      @secret.include? guess[index]
+      (@secret.include? guess[index]) && !exact_match?(guess, index)
     end
 
 
