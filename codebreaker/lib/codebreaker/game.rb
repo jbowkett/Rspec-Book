@@ -15,21 +15,31 @@ module Codebreaker
 
     def guess(guess)
 
-      number_match_count = 0
-      exact_match_count = 0
 
+      exact_match_count = exact_match_count(guess)
+      number_match_count = number_match_count(guess)
+
+      @output.puts '+' * exact_match_count + '-' * number_match_count
+    end
+
+    def exact_match_count(guess)
+      exact_match_count = 0
       (0..3).map do |index|
         if exact_match?(guess, index)
           exact_match_count += 1
         end
-
       end
+      exact_match_count
+    end
+
+    def number_match_count(guess)
+      number_match_count = 0
       (0..3).map do |index|
         if number_match?(guess, index)
           number_match_count += 1
         end
       end
-      @output.puts '+' * exact_match_count + '-' * number_match_count
+      number_match_count
     end
 
 
