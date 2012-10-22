@@ -71,9 +71,9 @@ module Codebreaker
 
       # 1, but maybe it should return 0, the behaviour is not specified in the specification
       context "with 1 exact match duplicated in guess" do
-        it "returns 0" do
+        it "returns 1" do
           marker = Marker.new('1234', '1155')
-          marker.exact_match_count.should == 0
+          marker.exact_match_count.should == 1
         end
       end
     end
