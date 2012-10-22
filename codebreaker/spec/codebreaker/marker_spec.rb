@@ -32,14 +32,6 @@ module Codebreaker
           marker.exact_match_count.should == 1
         end
       end
-      # returns 1, but maybe it should return 0, the behaviour is not specified in the specifiction
-      #context "with 2 numbers matching but repeated" do
-      #  it "returns 0" do
-      #    marker = Marker.new('1234', '5252')
-      #    marker.exact_match_count.should == 0
-      #  end
-      #end
-
     end
 
     describe "#number_match_count" do
@@ -70,18 +62,20 @@ module Codebreaker
           marker.number_match_count.should == 1
         end
       end
-      # todo: get someone's opinion on this - is there a better way to do this, something like a nested context or something?
       context "with 2 numbers matching but repeated" do
-        it "returns 1" do
+        it "returns 0" do
           marker = Marker.new('1234', '5252')
-          marker.number_match_count.should == 1
+          marker.number_match_count.should == 0
+        end
+      end
+
+      # 1, but maybe it should return 0, the behaviour is not specified in the specification
+      context "with 1 exact match duplicated in guess" do
+        it "returns 0" do
+          marker = Marker.new('1234', '1155')
+          marker.exact_match_count.should == 0
         end
       end
     end
-
-
-
-
-
   end
 end
